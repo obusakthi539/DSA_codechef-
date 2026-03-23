@@ -1,0 +1,217 @@
+Queue - To do list
+Create a program that simulates a to-do list manager using a queue.
+The program should allow users to perform the following operations:
+
+Add a task to the to-do list.
+If the task is already present in the list - then ignore the task
+Display the current to-do list once all tasks have been added
+The code given here has implemented queues using arrays.
+Update the code to solve the problem.
+
+Constraints
+There are a maximum of 10 tasks in the input.
+
+Sample 1:
+Input
+Output
+1
+2
+4
+5
+1
+2
+3
+9
+4
+9
+1
+2
+4
+5
+3
+9
+============================================================
+
+import java.util.Scanner;
+
+class CircularQueueExample {
+    static final int maxSize = 101;
+    static int[] a = new int[maxSize];
+    static int front = 0; 
+    static int rear = -1; 
+    static int currentSize = 0;
+
+    static boolean isEmpty() {
+        return currentSize == 0;
+    }
+
+    static boolean isFull() {
+        return currentSize == maxSize;
+    }
+
+    static int size() {
+        return currentSize;
+    }
+
+    // Enqueue (Circular)
+    static void enqueue(int item) {
+        if (isFull()) {
+            System.out.println("Queue is full. Cannot enqueue.");
+            return;
+        }
+     //Write your code here
+
+    }
+
+    // Dequeue (Circular)
+    static int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty. Cannot dequeue.");
+            return -1;
+        }
+
+        int removedItem = a[front];
+        front = (front + 1) % maxSize;  // Circular increment
+        currentSize--;
+        return removedItem;
+    }
+
+    // Check if task already exists
+    static boolean contains(int task) {
+        //write your code here
+        
+    }
+
+    // Add task only if not duplicate
+    static void addTask(int task) {
+        if (!contains(task)) {
+            enqueue(task);
+        }
+    }
+
+    // Display To-Do List
+    static void displayToDoList() {
+         //write your code here
+        
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = 10;
+
+        for (int i = 0; i < n; i++) {
+            int task = scanner.nextInt();
+            if (task == -1) break;
+            addTask(task);
+        }
+
+        displayToDoList();
+        scanner.close();
+    }
+}
+========================
+||
+
+
+import java.util.Scanner;
+
+class CircularQueueExample {
+    static final int maxSize = 101;
+    static int[] a = new int[maxSize];
+    static int front = 0; 
+    static int rear = -1; 
+    static int currentSize = 0;
+
+    static boolean isEmpty() {
+        return currentSize == 0;
+    }
+
+    static boolean isFull() {
+        return currentSize == maxSize;
+    }
+
+    static int size() {
+        return currentSize;
+    }
+
+    // Enqueue (Circular)
+    static void enqueue(int item) {
+        if (isFull()) {
+            System.out.println("Queue is full. Cannot enqueue.");
+            return;
+        }
+        rear = (rear + 1) % maxSize;  // Circular increment
+        a[rear] = item;
+        currentSize++;
+    }
+
+    // Dequeue (Circular)
+    static int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty. Cannot dequeue.");
+            return -1;
+        }
+
+        int removedItem = a[front];
+        front = (front + 1) % maxSize;  // Circular increment
+        currentSize--;
+        return removedItem;
+    }
+
+    // Check if task already exists
+    static boolean contains(int task) {
+        if (isEmpty()) {
+            return false;
+        }
+
+        int index = front;
+
+        for (int i = 0; i < currentSize; i++) {
+            if (a[index] == task) {
+                return true;
+            }
+            index = (index + 1) % maxSize;
+        }
+
+        return false;
+    }
+
+    // Add task only if not duplicate
+    static void addTask(int task) {
+        if (!contains(task)) {
+            enqueue(task);
+        }
+    }
+
+    // Display To-Do List
+    static void displayToDoList() {
+        if (isEmpty()) {
+            System.out.println("To-Do List is empty.");
+            return;
+        }
+
+        int index = front;
+
+        for (int i = 0; i < currentSize; i++) {
+            System.out.print(a[index] + " ");
+            index = (index + 1) % maxSize;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = 10;
+
+        for (int i = 0; i < n; i++) {
+            int task = scanner.nextInt();
+            if (task == -1) break;
+            addTask(task);
+        }
+
+        displayToDoList();
+        scanner.close();
+    }
+}
+
+
+
