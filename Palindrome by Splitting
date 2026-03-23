@@ -1,0 +1,403 @@
+Palindrome by Splitting
+JJ has an array 
+A
+A initially of length 
+N
+N. He can perform the following operation on 
+A
+A:
+
+1) Pick any index 
+i
+i 
+(
+1
+≤
+i
+≤
+∣
+A
+∣
+)
+(1≤i≤∣A∣) such that 
+A
+i
+>
+1
+A 
+i
+​
+ >1
+2) Select any two integers 
+X
+X and 
+Y
+Y such that 
+X
++
+Y
+=
+A
+i
+X+Y=A 
+i
+​
+  and 
+X
+,
+Y
+≥
+1
+X,Y≥1
+3) Replace 
+A
+i
+A 
+i
+​
+  with 
+X
+X and 
+Y
+Y
+
+Note that the length of the array increases by 
+1
+1 after each operation.
+
+For example, if 
+A
+=
+[
+4
+,
+6
+,
+7
+,
+2
+]
+A=[4,6,7,2], he can select 
+i
+=
+1
+i=1 and select 
+X
+=
+1
+,
+Y
+=
+3
+X=1,Y=3 (since 
+X
++
+Y
+=
+A
+1
+X+Y=A 
+1
+​
+ ). After the operation array becomes: 
+[
+4
+‾
+,
+6
+,
+7
+,
+2
+]
+→
+[
+1
+‾
+,
+3
+‾
+,
+6
+,
+7
+,
+2
+]
+[ 
+4
+​
+ ,6,7,2]→[ 
+1
+​
+ , 
+3
+​
+ ,6,7,2].
+
+JJ wants to make 
+A
+A palindromic. Find the minimum number of operations to do so.
+
+It is guaranteed that 
+A
+A can be converted to a palindromic array by using the above operation.
+
+Note: An array is called a palindrome if it reads the same backwards and forwards, for e.g. 
+[
+1
+,
+3
+,
+3
+,
+1
+]
+[1,3,3,1] and 
+[
+6
+,
+2
+,
+6
+]
+[6,2,6] are palindromic.
+
+Input Format
+The first line contains a single integer 
+T
+T — the number of test cases. Then the test cases follow.
+The first line of each test case contains an integer 
+N
+N — the size of the array 
+A
+A.
+The second line of each test case contains 
+N
+N space-separated integers 
+A
+1
+,
+A
+2
+,
+…
+,
+A
+N
+A 
+1
+​
+ ,A 
+2
+​
+ ,…,A 
+N
+​
+  denoting the array 
+A
+A.
+Output Format
+For each test case, output the minimum number of operations to make 
+A
+A palindromic.
+
+Constraints
+1
+≤
+T
+≤
+10
+5
+1≤T≤10 
+5
+ 
+1
+≤
+N
+≤
+10
+5
+1≤N≤10 
+5
+ 
+1
+≤
+A
+i
+≤
+10
+5
+1≤A 
+i
+​
+ ≤10 
+5
+ 
+Sum of 
+N
+N over all test cases does not exceed 
+2
+⋅
+10
+5
+2⋅10 
+5
+ .
+Sample 1:
+Input
+Output
+3
+4
+3 7 6 4
+5
+1 4 5 4 1
+5
+1 2 3 4 5
+2
+0
+4
+Explanation:
+Test Case 1: We can perform the following operations:
+
+[
+3
+,
+7
+‾
+,
+6
+,
+4
+]
+→
+i
+=
+2
+,
+X
+=
+1
+,
+Y
+=
+6
+[
+3
+,
+1
+‾
+,
+6
+‾
+,
+6
+,
+4
+]
+[3, 
+7
+​
+ ,6,4] 
+i=2,X=1,Y=6
+​
+ [3, 
+1
+​
+ , 
+6
+​
+ ,6,4]
+[
+3
+,
+1
+,
+6
+,
+6
+,
+4
+‾
+]
+→
+i
+=
+5
+,
+X
+=
+1
+,
+Y
+=
+3
+[
+3
+,
+1
+,
+6
+,
+6
+,
+1
+‾
+,
+3
+‾
+]
+[3,1,6,6, 
+4
+​
+ ] 
+i=5,X=1,Y=3
+​
+ [3,1,6,6, 
+1
+​
+ , 
+3
+​
+ ]
+Test Case 2: 
+A
+A is already palindromic.
+
+===================================
+import java.util.*;
+public class Main{
+    public static void main (String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0){
+            int n=sc.nextInt();
+            Deque<Integer> dq=new ArrayDeque<>();
+            for(int i=0;i<n;i++){
+                dq.addLast(sc.nextInt());
+            } 
+            int op=0;
+            while(dq.size()>1) {
+               int l=dq.pollFirst();
+               int r=dq.pollLast();
+                if(l==r){
+                    continue;
+                }else if(l<r){
+                    dq.addLast(r-l);
+                    op++;
+                }else {
+                    dq.addFirst(l-r);
+                    op++;
+                } } System.out.println(op);
+        }
+        
+    }
+}
+
+
+
+
+
+
+
+
