@@ -1,0 +1,44 @@
+Insertion in Linked List
+Let's learn about inserting new elements at the beginning of a linked list.
+
+Now, suppose we have a linked list 1 -> 2 -> 3 and we want to insert 4 at the beginning. We can then follow these steps:
+
+Create a new node with value 4. Let's call it newNode
+Linked list image
+Add the head of the existing linked list as the next of newNode.
+Linked list image
+Then set the head variable to the newNode, as the newNode is our new head.
+Linked list image
+Implementation
+To implement insertion operation, we have to create a new class LinkedList and create a new method insertFront in it.
+
+We have also added getHeadValue to get the value at head after insertion.
+
+Read and understand the code and then submit to see what it does.
+
+
+class LinkedList {
+
+    class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+        }
+    }
+
+    Node head = null;
+
+    // Insert at the beginning
+    void insertFront(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // Return head value safely
+    int getHeadValue() {
+        return head != null ? head.data : -1;
+    }
+}
