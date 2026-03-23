@@ -1,0 +1,101 @@
+Practice - Josephus Problem
+You need to solve the famous Josephus problem using circular linked list in this section.
+
+There are N people standing in a circle like 1->2->3...->N->1 and there is a knife. Whoever has the knife kills the person next to them and hands over the knife, i.e., if 2 has the knife in 1->2->3->1 then 2 kills 3 and hands over the knife to 1. This process continues until there is only one person left, i.e., there is no one left to kill. This last person is deemed as the winner. Initially the knife is with person 1.
+
+For a given N, you need to determine the winner.
+
+Note - You are given a circular linked list containing elements from 1 to N with head initially at 1. In the solution function, you need to output a single integer denoting the winner.
+Do not make changes anywhere except the solveJosephus() function.
+
+Input Format
+The first line of input will contain a single integer 
+T
+T, denoting the number of test cases. The description of the test cases follows.
+The first and only line of each test case contains a single integer 
+N
+N, denoting the number of people
+Output Format
+For each test case, output on a new line the winner of that game.
+
+Sample 1:
+Input
+Output
+2
+5
+4
+3
+1
+Explanation:
+For n=5, the moves are as followed (the person in bracket holds the knife):
+(1)->2->3->4->5->1   (1 kills 2 and hands knife to 3)
+1->(3)->4->5->1   (3 kills 4 and hands knife to 5)
+1->3->(5)->1   (5 kills 1 and hands knife to 3)
+(3)->5   (3 kills 5 and is the only person left)
+
+Therefore, 3 is the winner.
+===================================================================================================================
+
+import java.util.Scanner;
+
+class Node {
+    int value;
+    Node next;
+
+    Node(int val) {
+        value = val;
+        next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+    Node tail;
+
+    void insertAtEnd(int value) {
+        Node newNode = new Node(value);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            tail.next = newNode;
+        }
+
+        tail = newNode;
+        tail.next = head;
+    }
+
+    int solveJosephus() {
+        Node current = head;
+
+        while (current.next != current) {
+            Node knifePass = current.next.next;
+            if (current.next == head) {
+                head = knifePass;
+            }
+
+            current.next = knifePass;
+            current = current.next;
+        }
+        return current.value;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+
+        while (t-- > 0) {
+            int n = scanner.nextInt();
+
+            LinkedList list = new LinkedList();
+            for (int i = 1; i <= n; i++) {
+                list.insertAtEnd(i);
+            }
+            System.out.println(list.solveJosephus());
+        }
+    }
+}
+
+
