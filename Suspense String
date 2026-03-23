@@ -157,3 +157,42 @@ T
 T becomes 
 0100
 0100.
+======================================
+import java.util.*;
+public class Main{
+    public static void main (String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0){
+            int n=sc.nextInt();
+            sc.nextLine();
+            String s=sc.nextLine();
+            Deque <Character> r=new ArrayDeque<>();
+            int i=0,j=n-1;
+            boolean alice=true;
+            while(i<=j){
+                char ch=s.charAt(i);
+                if(alice) {
+                    ch=s.charAt(i++);
+                    if(ch=='0'){
+                        r.addFirst(ch);
+                    } else{
+                        r.addLast(ch);
+                    } } 
+                    else{
+                    ch=s.charAt(j--);
+                    if(ch=='1'){
+                        r.addFirst(ch);
+                    }else{
+                        r.addLast(ch);
+                    } }
+               alice=!alice;}
+            while(!r.isEmpty()){
+                System.out.print(r.pollFirst());
+            }
+            System.out.println();
+        }
+    }
+}
+
+
