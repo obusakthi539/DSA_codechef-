@@ -1,0 +1,35 @@
+Delete from any position
+Deletion from any position other than front is a little different.
+
+For example, we have 1 -> 2 -> 3 and we want to remove 2.
+For that, we have to point the next of 1 to 3 and delete 2.
+
+Video Explanation
+
+Task
+Complete the function deleteNode to delete an element from any position.
+
+Sample 1:
+Input
+Output
+5 3
+1 2 3 4 5
+1 2 4 5
+
+==================================================================================
+void deleteNode(int value) {
+    if (head.value == value) {
+        Node targetNode = head;
+        head=head.next;
+    }
+    Node iter = head;
+    while (iter.next != null) {
+        if(iter.next.value==value)
+        {
+            iter.next=iter.next.next;
+        }
+        iter=iter.next;
+    }
+}
+
+
