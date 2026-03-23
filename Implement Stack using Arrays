@@ -1,0 +1,74 @@
+Implement Stack using Arrays
+Here's a simple exercise that involves implementing a stack.
+In this exercise, you'll implement a basic stack to reverse a string using the stack's LIFO property.
+
+Task
+Update the functions push() and pop() within the class stack to output the reverses string.
+
+Sample 1:
+Input
+Output
+Hello, World!
+!dlroW ,olleH
+
+
+import java.util.Scanner;
+
+class Stack {
+    private static final int STACK_CAPACITY = 101;
+    private char[] stackArray = new char[STACK_CAPACITY];
+    private int topIndex = -1;
+
+    // Push element onto stack
+    void push(char character) {
+        if(isFull())
+        {
+            System.out.println("Stack is full");
+        }
+        topIndex++;
+        stackArray[topIndex]=character;
+        }
+    }
+    // Pop element from stack
+    char pop() {
+        if(isEmpty())
+        {
+            System.out.println("Stack is empty");
+            return '\0';
+        }
+        return stackArray[topIndex--];
+        
+            }
+    boolean isEmpty() {
+        return topIndex == -1;
+    }
+
+    boolean isFull() {
+        return topIndex >= STACK_CAPACITY - 1;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        String inputString = "Hello, World!";
+        int inputLength = inputString.length();
+
+        Stack charStack = new Stack();
+
+        // Push each character onto the stack
+        for (int i = 0; i < inputLength; i++) {
+            char currentChar = inputString.charAt(i);
+            charStack.push(currentChar);
+        }
+
+        // Pop characters to create reversed string
+        StringBuilder reversedString = new StringBuilder();
+        while (!charStack.isEmpty()) {
+            reversedString.append(charStack.pop());
+        }
+
+        // Print reversed string
+        System.out.println(reversedString.toString());
+    }
+}
+
