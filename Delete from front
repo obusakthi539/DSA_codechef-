@@ -1,0 +1,41 @@
+Delete from front
+Before deleting a node, we will need to find it by value. To find a value, we can traverse the linked list and see if node of any value matches the value we want to delete.
+
+Once the targetNode is found, we can then delete it.
+
+Video Explanation
+
+Task
+Complete the function deleteNode to delete an element from the front of the linked list. In the next lesson, we will learn how to delete an element from any other position.
+
+Sample 1:
+Input
+Output
+5 1
+1 2 3 4 5
+2 3 4 5
+=========================================================================================================================================================
+
+
+
+
+
+void deleteNode(int value) {
+    // If list is empty
+    if (head == null) {
+        return;
+    }
+
+    // If head node holds the value
+    if (head.value == value) {
+        Node targetNode = head;
+
+        // Move head to next node
+        head = head.next;
+
+        // Optional: clear reference (helps GC)
+        targetNode.next = null;
+
+        return;
+    }
+}
