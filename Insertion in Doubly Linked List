@@ -1,0 +1,87 @@
+Insertion in Doubly Linked List
+In this section, we will learn how to do the insertion operation in a doubly linked list.
+
+Let's suppose you need to insert a node newNode between node A and node B, the pointers we need to update are:
+
+next pointer of A
+prev pointer of B
+next and prev pointer of newNode
+Complete the function insertAtIndex(int index, int value) where index denotes that you need to insert a new node after the index-1th element, i.e., at the indexth position.
+
+Note: In case of index, 0-based indexing is used, i.e., for insertAtIndex(0, k) node with value k is to be inserted in the beginning.
+
+Video Explanation
+
+Sample 1:
+Input
+Output
+5 2 99
+1 2 3 4 5
+1 2 99 3 4 5
+Explanation:
+Original linkedlist if lenght 5: 1 2 3 4 5
+Inserting 99 at the index 2 results in linkedlist: 1 2 99 3 4 5
+===========================================================================================
+
+public void insertAtIndex(int index, int value) {
+
+    Node newNode = new Node(value);
+
+    // Insert at beginning
+    if (index == 0) {
+        newNode.next = head;
+
+        if (head != null) {
+            head.prev = newNode;
+        }
+
+        head = newNode;
+        return;
+    }
+
+    Node current = head;
+
+    // Move (index - 1) steps
+    for (int i = 0; i < index - 1 && current != null; i++) {
+        current = current.next;
+    }
+
+    // Invalid index
+    if (current == null) {
+        return;
+    }
+
+    Node nextNode = current.next;
+
+    // Insert new node
+    newNode.next = nextNode;
+    newNode.prev = current;
+    current.next = newNode;
+
+    if (nextNode != null) {
+        nextNode.prev = newNode;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
