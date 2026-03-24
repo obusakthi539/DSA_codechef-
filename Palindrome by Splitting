@@ -1,252 +1,41 @@
-Palindrome by Splitting
-JJ has an array 
-A
-A initially of length 
-N
-N. He can perform the following operation on 
-A
-A:
+PALINDROME BY SPLITTING
 
-1) Pick any index 
-i
-i 
-(
-1
-≤
-i
-≤
-∣
-A
-∣
-)
-(1≤i≤∣A∣) such that 
-A
-i
->
-1
-A 
-i
-​
- >1
-2) Select any two integers 
-X
-X and 
-Y
-Y such that 
-X
-+
-Y
-=
-A
-i
-X+Y=A 
-i
-​
-  and 
-X
-,
-Y
-≥
-1
-X,Y≥1
-3) Replace 
-A
-i
-A 
-i
-​
-  with 
-X
-X and 
-Y
-Y
+You are given an array A of length N.
 
-Note that the length of the array increases by 
-1
-1 after each operation.
+You can perform the following operation:
 
-For example, if 
-A
-=
-[
-4
-,
-6
-,
-7
-,
-2
-]
-A=[4,6,7,2], he can select 
-i
-=
-1
-i=1 and select 
-X
-=
-1
-,
-Y
-=
-3
-X=1,Y=3 (since 
-X
-+
-Y
-=
-A
-1
-X+Y=A 
-1
-​
- ). After the operation array becomes: 
-[
-4
-‾
-,
-6
-,
-7
-,
-2
-]
-→
-[
-1
-‾
-,
-3
-‾
-,
-6
-,
-7
-,
-2
-]
-[ 
-4
-​
- ,6,7,2]→[ 
-1
-​
- , 
-3
-​
- ,6,7,2].
+Choose an index i such that A[i] > 1
+Choose two integers X and Y such that X + Y = A[i] and X ≥ 1 and Y ≥ 1
+Replace A[i] with X and Y
 
-JJ wants to make 
-A
-A palindromic. Find the minimum number of operations to do so.
+After this operation, the length of the array increases by 1.
 
-It is guaranteed that 
-A
-A can be converted to a palindromic array by using the above operation.
+Your task is to make the array palindromic using the minimum number of operations.
 
-Note: An array is called a palindrome if it reads the same backwards and forwards, for e.g. 
-[
-1
-,
-3
-,
-3
-,
-1
-]
-[1,3,3,1] and 
-[
-6
-,
-2
-,
-6
-]
-[6,2,6] are palindromic.
+An array is called a palindrome if it reads the same from left to right and right to left.
 
-Input Format
-The first line contains a single integer 
-T
-T — the number of test cases. Then the test cases follow.
-The first line of each test case contains an integer 
-N
-N — the size of the array 
-A
-A.
-The second line of each test case contains 
-N
-N space-separated integers 
-A
-1
-,
-A
-2
-,
-…
-,
-A
-N
-A 
-1
-​
- ,A 
-2
-​
- ,…,A 
-N
-​
-  denoting the array 
-A
-A.
-Output Format
-For each test case, output the minimum number of operations to make 
-A
-A palindromic.
+INPUT FORMAT
 
-Constraints
-1
-≤
-T
-≤
-10
-5
-1≤T≤10 
-5
- 
-1
-≤
-N
-≤
-10
-5
-1≤N≤10 
-5
- 
-1
-≤
-A
-i
-≤
-10
-5
-1≤A 
-i
-​
- ≤10 
-5
- 
-Sum of 
-N
-N over all test cases does not exceed 
-2
-⋅
-10
-5
-2⋅10 
-5
- .
-Sample 1:
-Input
-Output
+The first line contains an integer T
+T is the number of test cases
+
+For each test case:
+The first line contains an integer N
+The second line contains N space-separated integers A1, A2, ..., AN
+
+OUTPUT FORMAT
+
+For each test case, print a single integer — the minimum number of operations required
+
+CONSTRAINTS
+
+1 ≤ T ≤ 100000
+1 ≤ N ≤ 100000
+1 ≤ Ai ≤ 100000
+The sum of N over all test cases does not exceed 200000
+
+SAMPLE INPUT
+
 3
 4
 3 7 6 4
@@ -254,115 +43,29 @@ Output
 1 4 5 4 1
 5
 1 2 3 4 5
+
+SAMPLE OUTPUT
+
 2
 0
 4
-Explanation:
-Test Case 1: We can perform the following operations:
 
-[
-3
-,
-7
-‾
-,
-6
-,
-4
-]
-→
-i
-=
-2
-,
-X
-=
-1
-,
-Y
-=
-6
-[
-3
-,
-1
-‾
-,
-6
-‾
-,
-6
-,
-4
-]
-[3, 
-7
-​
- ,6,4] 
-i=2,X=1,Y=6
-​
- [3, 
-1
-​
- , 
-6
-​
- ,6,4]
-[
-3
-,
-1
-,
-6
-,
-6
-,
-4
-‾
-]
-→
-i
-=
-5
-,
-X
-=
-1
-,
-Y
-=
-3
-[
-3
-,
-1
-,
-6
-,
-6
-,
-1
-‾
-,
-3
-‾
-]
-[3,1,6,6, 
-4
-​
- ] 
-i=5,X=1,Y=3
-​
- [3,1,6,6, 
-1
-​
- , 
-3
-​
- ]
-Test Case 2: 
-A
-A is already palindromic.
+EXPLANATION
+
+Test case 1
+Array: 3 7 6 4
+
+Split 7 into 1 and 6 → array becomes 3 1 6 6 4
+Split 4 into 1 and 3 → array becomes 3 1 6 6 1 3
+
+Now the array becomes palindromic
+
+Test case 2
+Array is already a palindrome → 0 operations
+
+Test case 3
+Multiple splits are required to make the array symmetric
+Minimum operations = 4
 
 ===================================
 import java.util.*;
