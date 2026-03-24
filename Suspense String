@@ -1,80 +1,55 @@
-Suspense String
-Alice and Bob are playing a game with a binary string 
-S
-S of length 
-N
-N and an empty string 
-T
-T.
-They both take turns and Alice plays first.
+SUSPENSE STRING
 
-In Alice's turn, she picks the first character of string 
-S
-S, appends the character to either the front or back of string 
-T
-T and deletes the chosen character from string 
-S
-S.
-In Bob's turn, he picks the last character of string 
-S
-S, appends the character to either the front or back of string 
-T
-T and deletes the chosen character from string 
-S
-S.
-The game stops when 
-S
-S becomes empty.
-Alice wants the resultant string 
-T
-T to be lexicographically smallest, while Bob wants the resultant string 
-T
-T to be lexicographically largest possible.
+Alice and Bob are playing a game using a binary string S of length N and an initially empty string T.
 
-Find the resultant string 
-T
-T, if both of them play optimally.
+They take turns alternately, with Alice playing first.
 
-Input Format
-The first line of input will contain a single integer 
-T
-T, denoting the number of test cases.
-Each test case consists of multiple lines of input.
-The first line of each test case contains a single integer 
-N
-N - the length of the string 
-S
-S.
-The next line is the binary string 
-S
-S.
-Output Format
-For each test case, print the the resultant string 
-T
-T, if both of them play optimally.
+RULES
 
-Constraints
-1
-≤
-T
-≤
-100
-1≤T≤100
-1
-≤
-N
-≤
-1000
-1≤N≤1000
-S
-S can only contain the characters 
-0
-0 or 
-1
-1.
-Sample 1:
-Input
-Output
+Alice’s turn
+She picks the first character of string S
+She can insert it either at the front or at the back of string T
+Then she removes that character from S
+
+Bob’s turn
+He picks the last character of string S
+He can insert it either at the front or at the back of string T
+Then he removes that character from S
+
+The game continues until S becomes empty.
+
+OBJECTIVE
+
+Alice wants the final string T to be lexicographically smallest
+Bob wants the final string T to be lexicographically largest
+
+Both players play optimally.
+
+TASK
+
+Find the final string T after the game ends.
+
+INPUT FORMAT
+
+The first line contains an integer T
+T is the number of test cases
+
+For each test case
+The first line contains an integer N
+The second line contains the binary string S
+
+OUTPUT FORMAT
+
+For each test case, print the final string T
+
+CONSTRAINTS
+
+1 ≤ T ≤ 100
+1 ≤ N ≤ 1000
+S contains only characters 0 and 1
+
+SAMPLE INPUT
+
 4
 2
 10
@@ -84,79 +59,19 @@ Output
 010111
 10
 1110000010
+
+SAMPLE OUTPUT
+
 10
 0100
 101101
 0011011000
-Explanation:
-Test case 
-1
-1: Alice picks the first bit which is 
-1
-1 and appends it to the empty string 
-T
-T. Bob then picks the last bit 
-0
-0 and appends it to the back of 
-T
-T making the resultant string to be 
-10
-10.
 
-Test case 
-2
-2:
+EXPLANATION
 
-Alice picks 
-0
-0 and adds it to 
-T
-T. Thus, 
-S
-S becomes 
-001
-001 and 
-T
-T becomes 
-0
-0.
-Bob picks 
-1
-1 and adds it to front of 
-T
-T. Thus, 
-S
-S becomes 
-00
-00 and 
-T
-T becomes 
-10
-10.
-Alice picks 
-0
-0 and adds it to front of 
-T
-T. Thus, 
-S
-S becomes 
-0
-0 and 
-T
-T becomes 
-010
-010.
-Bob picks 
-0
-0 and adds it to back of 
-T
-T. Thus, 
-S
-S becomes empty and 
-T
-T becomes 
-0100
-0100.
+Players alternately pick characters from S and place them at either end of T.
+Alice tries to minimize the final string, while Bob tries to maximize it.
+The final result depends on optimal decisions made by both players.
 ======================================
 import java.util.*;
 public class Main{
